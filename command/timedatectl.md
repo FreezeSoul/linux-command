@@ -30,9 +30,14 @@ Query or change system time and date settings.
   -H --host=[USER@]HOST    在远程主机上操作
   -M --machine=CONTAINER   在本地容器上操作。
      --adjust-system-clock 更改本地 RTC 模式时调整系统时钟。
+     --monitor		   监控systemd-timesyncd的状态
+  -p --property=NAME       仅显示此名称的属性
+  -a --all		   显示所有属性，包括空属性
+     --value		   显示属性时，只打印值
 
 Commands:
   status                   显示当前的时间设置。
+  show                     显示systemd-timedated的属性。
   set-time TIME            设置系统时间。
   set-timezone ZONE        设置系统时区。
   list-timezones           显示已知时区。
@@ -58,11 +63,22 @@ NTP synchronized: no
       DST active: n/a
 ```
 
+显示systemd-timedated的属性
+
+```
+$ timedatectl show
+Timezone=Asia/Shanghai
+LocalRTC=no
+CanNTP=yes
+NTP=yes
+NTPSynchronized=yes
+TimeUSec=Fri 2022-04-08 17:04:02 CST
+RTCTimeUSec=Fri 2022-04-08 17:04:02 CST
+```
+
 显示系统所有可用的时区
 
 ```shell
-$ timedatectl show
-Unknown operation show
 $ timedatectl list-timezones
 Africa/Abidjan
 Africa/Accra
